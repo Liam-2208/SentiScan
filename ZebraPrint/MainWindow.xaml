@@ -29,14 +29,14 @@
                 </Canvas>
 
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="Sign in" Style="{StaticResource titletext}"/>
-                    <TextBlock Text="Ender your password to enter." Style="{StaticResource normalText}" Opacity="0.8" Margin="20 30"/>
-                    <Button Content="Connect" Style="{StaticResource button}"/>
+                    <TextBlock Text="SentiScan" Style="{StaticResource titletext}"/>
+                    <TextBlock Text="Server Name - 192.168.10.33" Style="{StaticResource normalText}" Opacity="0.8" Margin="20 30"/>
+                    <TextBlock Text="Database Name - SP2025" Style="{StaticResource normalText}" Opacity="0.8"/>
                 </StackPanel>
             </Grid>
         </Border>
 
-        <Border Background="#FFFFFF" Grid.Column="1" CornerRadius="0 10 10 0">
+        <Border Background="#FFFFFF" Grid.Column="1" CornerRadius="0 10 10 0" MouseDown="Border_MouseDown">
             <StackPanel>
                 <TextBlock Text="Sign in to connect" Style="{StaticResource titletext}" Foreground="#333333" Margin="0 40 0 0" />
                 <StackPanel Orientation="Horizontal" Margin="0 20" HorizontalAlignment="Center">
@@ -52,7 +52,7 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock x:Name="textUsername" MouseDown="textUsername_MouseDown" Text="Username..." Style="{StaticResource textHint}"/>
-                        <TextBox x:Name="txtUsername" TextChanged="txtUsername_TextChanged" />
+                        <TextBox x:Name="txtUsername" TextChanged="txtUsername_TextChanged" Style="{StaticResource textBox}"/>
                     </Grid>
                 </Border>
                 <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 7" CornerRadius="5">
@@ -63,13 +63,14 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock x:Name="textPassword" MouseDown="textPassword_MouseDown" Text="Password..." Style="{StaticResource textHint}"/>
-                        <TextBox x:Name="txtPassword" TextChanged="txtPassword_TextChanged" />
+                        <PasswordBox x:Name="txtPassword" PasswordChanged="txtPassword_TextChanged" Style="{StaticResource textBox}" />
                     </Grid>
                 </Border>
 
+                <Button Content="Connect" Click="Button_Click" Style="{StaticResource Mainbutton}"/>
             </StackPanel>
-             
+
         </Border>
-        
+
     </Grid>
 </Window>
