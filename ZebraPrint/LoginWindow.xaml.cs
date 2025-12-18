@@ -1,20 +1,22 @@
 ﻿using System.Configuration;
 using System.Data.SqlClient;
+using System.Security.AccessControl;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using SentiScan.View;
 
-namespace ZebraPrint
+namespace SentiScan
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginWindow : Window
     {
         private TextBlock txtPasswordCount;
 
-        public MainWindow()
+        public LoginWindow()
         {
             InitializeComponent();
         }
@@ -75,35 +77,47 @@ namespace ZebraPrint
                 // Test database connection
                 if (TestSQLConnection("Sentinor-dc1", "SP2025", "SPAdmin", "Bounty+Mars1"))
                 {
-                    MessageBox.Show("Database connected successfully.");
+                   
 
                     // Check if user exists in database
                     if (UserCheck(txtUsername.Text) > 0)
                     {
-                        MessageBox.Show("User found in database.");
+                        
                     }
                     else
                     {
-                        MessageBox.Show("User not found in database.");
+                        
                     }
                     if (PassCheck(txtPassword.Password) > 0)
                     {
-                        MessageBox.Show("Password Correct");
+                        
+
+                        // Opens Home Window
+
+                        HomeWindow homeWindow = new HomeWindow();
+                        homeWindow.Show();
+                        this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Password not correct");
+                        MessageBox.Show("Incorrect Password");
                     }
 
 
                 }
                 else
                 {
-                    MessageBox.Show("Database connection failed.");
+                   
                 }  
 
             }
         }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {

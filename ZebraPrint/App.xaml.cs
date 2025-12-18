@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace ZebraPrint
+namespace SentiScan
 {
     /// <summary>
     /// Interaction logic for App.xaml
