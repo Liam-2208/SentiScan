@@ -26,6 +26,7 @@ namespace ZebraPrint
 
         private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Hide textbox text when user clicks into it
             if (!string.IsNullOrEmpty(txtUsername.Text) && txtUsername.Text.Length > 0)
             {
                 textUsername.Visibility = Visibility.Collapsed;
@@ -43,6 +44,7 @@ namespace ZebraPrint
 
         private void txtPassword_TextChanged(object sender, RoutedEventArgs e)
         {
+            // Hide textbox text when user clicks into it
             if (!string.IsNullOrEmpty(txtPassword.Password) && txtPassword.Password.Length > 0)
             {
                 textPassword.Visibility = Visibility.Collapsed;

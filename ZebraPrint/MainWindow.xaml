@@ -70,6 +70,8 @@
                 <Button Content="Connect" Click="Button_Click" Style="{StaticResource Mainbutton}"/>
             </StackPanel>
 
+            
+            
         </Border>
 
     </Grid>
