@@ -40,15 +40,14 @@
 
         <Border Background="#FFFFFF" Grid.Column="1" CornerRadius="0 10 10 0" MouseDown="Border_MouseDown">
             <StackPanel VerticalAlignment="Center">
-
-
-                <Button Content="Manage Labels" Click="Button_Click" Style="{StaticResource Mainbutton}" Margin="10"/>
-                <Button Content="Manage Products" Click="Button_Click" Style="{StaticResource Mainbutton}" Margin="10"/>
-                <Button Content="Manage Orders" Click="Button_Click" Style="{StaticResource Mainbutton}"  Margin="10"/>
-                <Button Name="CloseButton" Content="Close" Click="CloseButton_Click" Style="{StaticResource Closebutton}" Margin="70"/>
+                <Button Content="Manage Products" Click="ProductButton_Click" Style="{StaticResource Mainbutton}"/>
+                <Button Content="Manage Parts" Click="Button_Click" Style="{StaticResource Mainbutton}"/>
+                <Button Content="Manage Labels" Click="Button_Click" Style="{StaticResource Mainbutton}"/>
+                <Button Content="Manage Orders" Click="Button_Click" Style="{StaticResource Mainbutton}"/>
+                <Button x:Name="CloseButton" Content="Close" Click="CloseButton_Click" Style="{StaticResource Closebutton}" Margin="70"/>
 
             </StackPanel>
-            
+
         </Border>
 
 

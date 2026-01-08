@@ -19,6 +19,7 @@ namespace SentiScan
         public LoginWindow()
         {
             InitializeComponent();
+            getSettings();
         }
 
         private void textUsername_MouseDown(object sender, MouseButtonEventArgs e)
@@ -29,6 +30,7 @@ namespace SentiScan
         private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)
         {
             // Hide textbox text when user clicks into it
+
             if (!string.IsNullOrEmpty(txtUsername.Text) && txtUsername.Text.Length > 0)
             {
                 textUsername.Visibility = Visibility.Collapsed;
@@ -47,6 +49,7 @@ namespace SentiScan
         private void txtPassword_TextChanged(object sender, RoutedEventArgs e)
         {
             // Hide textbox text when user clicks into it
+
             if (!string.IsNullOrEmpty(txtPassword.Password) && txtPassword.Password.Length > 0)
             {
                 textPassword.Visibility = Visibility.Collapsed;
@@ -60,6 +63,10 @@ namespace SentiScan
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
+            // saving database settings
+            saveSettings();
+
             if (string.IsNullOrEmpty(txtUsername.Text) && !string.IsNullOrEmpty(txtPassword.Password))
             {
                 MessageBox.Show("Please enter your username.");
@@ -76,12 +83,14 @@ namespace SentiScan
             {
                 // Proceed with login
 
+
                 // Test database connection
-                if (TestSQLConnection("Sentinor-dc1", "SP2025", "SPAdmin", "Bounty+Mars1"))
+                if (TestSQLConnection(txtServerName.Text, txtDataBaseName.Text, txtDataUser.Text, txtDataPass.Text))
                 {
                    
 
                     // Check if user exists in database
+
                     if (UserCheck(txtUsername.Text) > 0)
                     {
                         
@@ -154,7 +163,7 @@ namespace SentiScan
 
         private static int PassCheck(string password)
         {
-            using (SqlConnection dbConnection = new SqlConnection(string.Format("Server={0}; database={1}; User Id={2}; Password={3};", "Sentinor-dc1", "SP2025", "SPAdmin", "Bounty+Mars1")))
+            using (SqlConnection dbConnection = new SqlConnection(string.Format("Server={0}; database={1}; User Id={2}; Password={3};", Properties.Settings.Default.ServerName, "SP2025", "SPAdmin", "Bounty+Mars1")))
             {
                 try
                 {
@@ -197,6 +206,27 @@ namespace SentiScan
                     return false;
                 }
             }
+        }
+
+
+        private void getSettings()
+        {
+            // Get saved settings and populate textboxes
+
+            txtServerName.Text = Properties.Settings.Default.ServerName;
+            txtDataBaseName.Text = Properties.Settings.Default.DatabaseName;
+            txtDataUser.Text = Properties.Settings.Default.DatabaseUser;
+            txtDataPass.Text = Properties.Settings.Default.DatabasePass;
+        }
+        private void saveSettings()
+        {
+            // Get saved settings and populate textboxes
+
+            Properties.Settings.Default.ServerName = txtServerName.Text;
+            Properties.Settings.Default.DatabaseName = txtDataBaseName.Text;
+            Properties.Settings.Default.DatabaseUser = txtDataUser.Text;
+            Properties.Settings.Default.DatabasePass = txtDataPass.Text;
+            Properties.Settings.Default.Save();
         }
 
     }

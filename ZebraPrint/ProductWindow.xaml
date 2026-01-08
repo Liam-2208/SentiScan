@@ -1,0 +1,20 @@
+﻿<Window x:Class="SentiScan.ProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SentiScan"
+        
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="AntiqueWhite"
+        Title="ProductWindow" Height="500" Width="800">
+    <Grid>
+        <TextBlock Text="Product Management Window" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
+        <Button Content="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Click="CloseButton_Click" Margin="725,10,0,0" Style="{StaticResource Closebutton}"/>
+        <Button Content="Add Product" HorizontalAlignment="Left" VerticalAlignment="Top" Width="124" Click="AddProductButton_Click" Margin="247,439,0,0" Style="{StaticResource Mainbutton}"/>
+        <Button Content="View" Style="{StaticResource Mainbutton}" Margin="84,439,592,10" Width="124"/>
+        <Button Content="Edit" Style="{StaticResource Mainbutton}" Margin="435,439,241,10" Width="124"/>
+        <Button Content="Delete" Style="{StaticResource Mainbutton}" Margin="592,439,84,10" Width="124"/>
+        <TextBox Text="Search here..." Style="{StaticResource textBox}" Margin="290,46,307,431" RenderTransformOrigin="0.501,0.481"/>
+        <DataGrid x:Name="MyProducts" Margin="59,77,59,77" ItemsSource="{Binding}"/>
+    </Grid>
+</Window>

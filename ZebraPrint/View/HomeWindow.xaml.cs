@@ -38,5 +38,13 @@ namespace SentiScan.View
         {
             Application.Current.Shutdown();
         }
+
+        private void ProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            ProductWindow productWindow = new ProductWindow();
+            productWindow.Show();
+            this.Close();
+
+        }
     }
 }

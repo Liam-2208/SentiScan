@@ -30,8 +30,11 @@
 
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Text="SentiScan" Style="{StaticResource titletext}"/>
-                    <TextBlock Text="Server Name - 192.168.10.33" Style="{StaticResource normalText}" Opacity="0.8" Margin="20 30"/>
-                    <TextBlock Text="Database Name - SP2025" Style="{StaticResource normalText}" Opacity="0.8"/>
+                    <TextBox x:Name="txtServerName" Text="Server Name?" Style="{StaticResource textBox}" Opacity="0.8" Margin="0"/>
+                    <TextBox x:Name="txtDataBaseName" Text="DataBase Name?" Style="{StaticResource textBox}" Opacity="0.8" RenderTransformOrigin="0.414,0.163" Margin="0"/>
+                    <TextBox x:Name="txtDataUser"  Text="Database Username" Style="{StaticResource textBox}" Opacity="0.8" Margin="0"/>
+                    <TextBox x:Name="txtDataPass"  Text="database Password" Style="{StaticResource textBox}" Opacity="0.8" Margin="0"/>
+                    <TextBlock Text="Fill in infomation above" Style="{StaticResource normalText}" Opacity="0.8"/>
                 </StackPanel>
             </Grid>
         </Border>
