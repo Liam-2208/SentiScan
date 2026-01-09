@@ -35,6 +35,7 @@ namespace SentiScan
         }
 
 
+        //Product Add Function
         private void AddProducts()
         {
             using (SqlConnection dbConnection = new SqlConnection(string.Format("Server={0}; database={1}; User Id={2}; Password={3};", Properties.Settings.Default.ServerName, Properties.Settings.Default.DatabaseName, Properties.Settings.Default.DatabaseUser, Properties.Settings.Default.DatabasePass)))
