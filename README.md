@@ -1,4 +1,4 @@
-This is the plan for SentiScan - **Not Finished**
+This is the plan for SentiScan - **Work in Progress**
 -------------------------------------------------------
 # 📦 SentiScan
 
