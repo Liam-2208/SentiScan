@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SentiScan"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="AntiqueWhite"
-        Title="LoginWindow" Height="500" Width="800">
+        Title="LoginWindow" Height="700" Width="1000">
     <Grid>
         <TextBlock Text="Add Products" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="28" FontWeight="Bold" Margin="0,10,0,0"/>
 
@@ -14,7 +14,7 @@
 
 
         <TextBlock Text="Prefix :" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,100,0,0" FontSize="20" FontWeight="SemiBold"/>
-        <TextBlock Text="Product Name :" HorizontalAlignment="Left" Margin="71,175,0,304" FontSize="20" FontWeight="SemiBold"/>
+        <TextBlock Text="Name :" HorizontalAlignment="Left" Margin="148,175,0,297" FontSize="20" FontWeight="SemiBold"/>
         <TextBlock Text="Description :" HorizontalAlignment="Left" FontSize="20" FontWeight="SemiBold" Foreground="Black" Height="39" VerticalAlignment="Bottom" Margin="98,0,0,211"/>
         <TextBox x:Name="Prefixtxt" HorizontalAlignment="Left" Height="30" Margin="250,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" Style="{StaticResource textBox}"/>
         <TextBox x:Name="ProductNametxt" HorizontalAlignment="Left" Height="30" Margin="250,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" Style="{StaticResource textBox}"/>

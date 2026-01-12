@@ -44,7 +44,18 @@ namespace SentiScan
             {
                 e.Cancel = true; // Cancel the generation of the ID column
             }
+            
+            if (_autoGenIndex == 4) // Assuming the fifth column is Images
+            {
+                e.Cancel = true; // Cancel the generation of the Images column
+            }   
 
+            if (_autoGenIndex == 5) // Assuming the fourth column is PartId
+            {
+                e.Cancel = true; // Cancel the generation of the PartId column
+            }
+
+          
             _autoGenIndex++;
         }
 
@@ -100,13 +111,11 @@ namespace SentiScan
             {
                 // Bind the DataTable to the DataGrid
                 MyProducts.ItemsSource = dtProductTypes.DefaultView;
-                
-            }
 
-            if (MyProducts.Columns.Count > 0)
-            {
-                // Hide unwanted columns
-                MyProducts.Columns[0].Visibility = Visibility.Collapsed; // Assuming the first column is ID
+                // Fill DataGrid Columns to Width of datagrid
+                MyProducts.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+
             }
         }
 
@@ -156,5 +165,49 @@ namespace SentiScan
                 MessageBox.Show("Please select a product to delete.");
             }
         }
+
+        private void Searchbtn_Click(object sender, RoutedEventArgs e)
+        {
+            string searchText = txtSearch.Text.Trim().ToLower();
+            if (string.IsNullOrEmpty(searchText))
+            {
+                // If search text is empty, show all products
+                MyProducts.ItemsSource = dtProductTypes.DefaultView;
+            }
+            else
+            {
+                // Filter the DataTable based on the search text
+                DataView dv = dtProductTypes.DefaultView;
+                dv.RowFilter = $"Name LIKE '%{searchText}%' OR Description LIKE '%{searchText}%'";
+                MyProducts.ItemsSource = dv;
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Hide textbox text when user clicks into it
+
+            if (!string.IsNullOrEmpty(txtSearch.Text) && txtSearch.Text.Length > 0)
+            {
+                textSearch.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                textSearch.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void textSearch_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            txtSearch.Focus();
+        }
+
+        private void Refreshbtn_Click(object sender, RoutedEventArgs e)
+        {
+            DataView dv = dtProductTypes.DefaultView;
+            dv.RowFilter = string.Empty;
+            MyProducts.ItemsSource = dv;
+        }
+
     }
 }

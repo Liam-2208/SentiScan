@@ -30,11 +30,11 @@
 
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Text="SentiScan" Style="{StaticResource titletext}"/>
-                    <TextBox x:Name="txtServerName" Text="Server Name?" Style="{StaticResource textBox}" Opacity="0.8" Margin="0"/>
-                    <TextBox x:Name="txtDataBaseName" Text="DataBase Name?" Style="{StaticResource textBox}" Opacity="0.8" RenderTransformOrigin="0.414,0.163" Margin="0"/>
-                    <TextBox x:Name="txtDataUser"  Text="Database Username" Style="{StaticResource textBox}" Opacity="0.8" Margin="0"/>
-                    <TextBox x:Name="txtDataPass"  Text="database Password" Style="{StaticResource textBox}" Opacity="0.8" Margin="0"/>
-                    <TextBlock Text="Fill in infomation above" Style="{StaticResource normalText}" Opacity="0.8"/>
+                    <TextBox x:Name="txtServerName" Text="Server Name?" Style="{StaticResource textBox}" Opacity="0.8" Margin="0" IsReadOnly="True"/>
+                    <TextBox x:Name="txtDataBaseName" Text="DataBase Name?" Style="{StaticResource textBox}" Opacity="0.8" RenderTransformOrigin="0.414,0.163" Margin="0" IsReadOnly="True"/>
+                    <TextBox x:Name="txtDataUser"  Text="Database Username" Style="{StaticResource textBox}" Opacity="0.8" Margin="0" IsReadOnly="True"/>
+                    <PasswordBox x:Name="txtDataPass" Style="{StaticResource textBox}" Opacity="0.8" Margin="0" />
+                    <TextBlock Text="Server Settings" Style="{StaticResource normalText}" Opacity="0.8"/>
                 </StackPanel>
             </Grid>
         </Border>
@@ -70,7 +70,7 @@
                     </Grid>
                 </Border>
 
-                <Button Content="Connect" Click="Button_Click" Style="{StaticResource Mainbutton}"/>
+                <Button Name="btnOK" IsDefault="True" Content="Connect" Click="Button_Click" Style="{StaticResource Mainbutton}"></Button>
 
 
                 <Button Name="CloseButton" Content="Close" Click="CloseButton_Click" Style="{StaticResource Closebutton}" Margin="120"/>

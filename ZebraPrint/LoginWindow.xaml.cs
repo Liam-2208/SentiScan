@@ -85,7 +85,7 @@ namespace SentiScan
 
 
                 // Test database connection
-                if (TestSQLConnection(txtServerName.Text, txtDataBaseName.Text, txtDataUser.Text, txtDataPass.Text))
+                if (TestSQLConnection(txtServerName.Text, txtDataBaseName.Text, txtDataUser.Text, txtDataPass.Password))
                 {
                    
 
@@ -163,7 +163,7 @@ namespace SentiScan
 
         private static int PassCheck(string password)
         {
-            using (SqlConnection dbConnection = new SqlConnection(string.Format("Server={0}; database={1}; User Id={2}; Password={3};", Properties.Settings.Default.ServerName, "SP2025", "SPAdmin", "Bounty+Mars1")))
+            using (SqlConnection dbConnection = new SqlConnection(string.Format("Server={0}; database={1}; User Id={2}; Password={3};", Properties.Settings.Default.ServerName, Properties.Settings.Default.DatabaseName, Properties.Settings.Default.DatabaseUser, Properties.Settings.Default.DatabasePass)))
             {
                 try
                 {
@@ -216,7 +216,7 @@ namespace SentiScan
             txtServerName.Text = Properties.Settings.Default.ServerName;
             txtDataBaseName.Text = Properties.Settings.Default.DatabaseName;
             txtDataUser.Text = Properties.Settings.Default.DatabaseUser;
-            txtDataPass.Text = Properties.Settings.Default.DatabasePass;
+            txtDataPass.Password = Properties.Settings.Default.DatabasePass;
         }
         private void saveSettings()
         {
@@ -225,7 +225,7 @@ namespace SentiScan
             Properties.Settings.Default.ServerName = txtServerName.Text;
             Properties.Settings.Default.DatabaseName = txtDataBaseName.Text;
             Properties.Settings.Default.DatabaseUser = txtDataUser.Text;
-            Properties.Settings.Default.DatabasePass = txtDataPass.Text;
+            Properties.Settings.Default.DatabasePass = txtDataPass.Password;
             Properties.Settings.Default.Save();
         }
 

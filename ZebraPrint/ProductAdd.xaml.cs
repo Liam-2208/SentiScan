@@ -40,9 +40,33 @@ namespace SentiScan
         {
             using (SqlConnection dbConnection = new SqlConnection(string.Format("Server={0}; database={1}; User Id={2}; Password={3};", Properties.Settings.Default.ServerName, Properties.Settings.Default.DatabaseName, Properties.Settings.Default.DatabaseUser, Properties.Settings.Default.DatabasePass)))
             {
+
                 try
                 {
                     dbConnection.Open();
+                    String query = "SELECT COUNT(*) FROM tbl_product_types WHERE Prefix = @Prefix";
+                    using (SqlCommand command = new SqlCommand(query, dbConnection))
+                    {
+                        command.Parameters.AddWithValue("@Prefix", Prefixtxt.Text);
+
+                        int count = (int)command.ExecuteScalar();
+
+                        if (count > 0)
+                        {
+                            MessageBox.Show("A product with this prefix already exists. Please choose a different prefix.");
+                            dbConnection.Close();
+                            return;
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("UserCheck: SQL Exception occurred while trying retrieve tbl_product_types." + ex.SqlState);
+                }
+
+
+                try
+                {
                     String query = "INSERT INTO dbo.tbl_product_types (Prefix,Name,Description,PartId) VALUES (@Prefix,@Name,@Description,@PartID)";
                     using (SqlCommand command = new SqlCommand(query, dbConnection))
                     {
@@ -52,6 +76,7 @@ namespace SentiScan
                         command.Parameters.AddWithValue("@PartID", "1");
 
                        int result = command.ExecuteNonQuery();
+
 
                         dbConnection.Close();
                         dbConnection.Dispose();
@@ -73,6 +98,8 @@ namespace SentiScan
                     MessageBox.Show("UserCheck: SQL Exception occurred while trying retrieve tbl_product_types." + ex.SqlState);
                 }
             }
+
+
         }
 
 
