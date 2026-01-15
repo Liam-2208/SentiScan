@@ -33,8 +33,9 @@
                     <TextBox x:Name="txtServerName" Text="Server Name?" Style="{StaticResource textBox}" Opacity="0.8" Margin="0" IsReadOnly="True"/>
                     <TextBox x:Name="txtDataBaseName" Text="DataBase Name?" Style="{StaticResource textBox}" Opacity="0.8" RenderTransformOrigin="0.414,0.163" Margin="0" IsReadOnly="True"/>
                     <TextBox x:Name="txtDataUser"  Text="Database Username" Style="{StaticResource textBox}" Opacity="0.8" Margin="0" IsReadOnly="True"/>
-                    <PasswordBox x:Name="txtDataPass" Style="{StaticResource textBox}" Opacity="0.8" Margin="0" />
+                    <PasswordBox x:Name="txtDataPass" Style="{StaticResource textBox}" Opacity="0.8" Margin="0" Visibility="Hidden" />
                     <TextBlock Text="Server Settings" Style="{StaticResource normalText}" Opacity="0.8"/>
+                    <CheckBox x:Name="chkServerSettings" Content="Edit Server Settings" Foreground="White" Checked="chkServerSettings_Checked" Unchecked="chkServerSettings_Unchecked" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Grid>
         </Border>
@@ -77,8 +78,8 @@
 
             </StackPanel>
 
-            
-            
+
+
         </Border>
 
     </Grid>

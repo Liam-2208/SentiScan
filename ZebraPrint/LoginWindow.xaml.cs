@@ -229,5 +229,23 @@ namespace SentiScan
             Properties.Settings.Default.Save();
         }
 
+      private void chkServerSettings_Checked(object sender, RoutedEventArgs e)
+        {
+            txtDataUser.IsReadOnly = false;
+            txtDataBaseName.IsReadOnly = false;
+            txtServerName.IsReadOnly = false;
+            txtDataPass.Visibility = Visibility.Visible;
+        }
+        private void chkServerSettings_Unchecked(object sender, RoutedEventArgs e)
+        {
+            txtServerName.IsReadOnly = true;
+            txtDataBaseName.IsReadOnly = true;
+            txtDataUser.IsReadOnly = true;
+            txtDataPass.Visibility = Visibility.Hidden;
+
+        }
+
+
+
     }
 }
