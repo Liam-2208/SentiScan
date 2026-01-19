@@ -1,40 +1,112 @@
-﻿<Window x:Class="SentiScan.ProductWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SentiScan"
-        
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="AntiqueWhite"
-        Title="ProductWindow" Height="500" Width="800">
+﻿<Window
+    x:Class="SentiScan.ProductWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SentiScan"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="ProductWindow"
+    Width="800"
+    Height="500"
+    AllowsTransparency="True"
+    Background="AntiqueWhite"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
     <Grid>
-        <TextBlock Text="Product Management Window" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="0,15,0,0"/>
+        <TextBlock
+            Margin="0,15,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            FontSize="24"
+            FontWeight="Bold"
+            Text="Product Management Window" />
 
-        <Button Content="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Click="CloseButton_Click" Margin="725,10,0,0" Style="{StaticResource Closebutton}"/>
+        <Button
+            Width="65"
+            Margin="725,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="CloseButton_Click"
+            Content="Close"
+            Style="{StaticResource Closebutton}" />
 
-        <Button Content="Add Product" HorizontalAlignment="Left" VerticalAlignment="Top" Width="124" Click="AddProductButton_Click" Margin="247,439,0,0" Style="{StaticResource Mainbutton}"/>
+        <Button
+            Width="124"
+            Margin="247,439,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="AddProductButton_Click"
+            Content="Add Product"
+            Style="{StaticResource Mainbutton}" />
 
-        <Button Content="View" Style="{StaticResource Mainbutton}" Margin="84,439,592,10" Width="124"/>
+        <Button
+            Width="124"
+            Margin="84,439,592,10"
+            Content="View"
+            Style="{StaticResource Mainbutton}" />
 
-        <Button Content="Edit" Style="{StaticResource Mainbutton}" Margin="435,439,241,10" Width="124"/>
+        <Button
+            Width="124"
+            Margin="435,439,241,10"
+            Content="Edit"
+            Style="{StaticResource Mainbutton}" />
 
-        <Button Content="Delete" Style="{StaticResource Mainbutton}" Click="DeleteProductButton_Click" Margin="592,439,84,10" Width="124"/>
+        <Button
+            Width="124"
+            Margin="592,439,84,10"
+            Click="DeleteProductButton_Click"
+            Content="Delete"
+            Style="{StaticResource Mainbutton}" />
 
-        <Button Content="Back" HorizontalAlignment="Left" Click="BackButton_Click" VerticalAlignment="Top" Width="63" Margin="10,10,0,0" Style="{StaticResource Mainbutton}"/>
+        <Button
+            Width="63"
+            Margin="10,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="BackButton_Click"
+            Content="Back"
+            Style="{StaticResource Mainbutton}" />
 
-        <TextBox x:Name="txtSearch"  TextChanged="txtSearch_TextChanged" Style="{StaticResource textBox}" Margin="290,60,308,416" RenderTransformOrigin="0.501,0.481"/>
-        <TextBlock x:Name="textSearch" MouseDown="textSearch_MouseDown" Text="Search here..." Style="{StaticResource textHint}" Margin="290,60,374,405"/>
-        <Button Content="Search" FontSize="10"   Margin="530,54,211,413" Width="NaN" Background="#3AB19B" Foreground="White" Click="Searchbtn_Click"/>
+        <TextBox
+            x:Name="txtSearch"
+            Margin="290,60,308,416"
+            RenderTransformOrigin="0.501,0.481"
+            Style="{StaticResource textBox}"
+            TextChanged="txtSearch_TextChanged" />
+        <TextBlock
+            x:Name="textSearch"
+            Margin="290,60,374,405"
+            MouseDown="textSearch_MouseDown"
+            Style="{StaticResource textHint}"
+            Text="Search here..." />
+        <Button
+            Width="NaN"
+            Margin="530,54,211,413"
+            Background="#3AB19B"
+            Click="Searchbtn_Click"
+            Content="Search"
+            FontSize="10"
+            Foreground="White" />
 
-        <Button Content="Refresh" FontSize="10" Margin="624,54,116,413" Width="NaN" Background="#3AB19B" Foreground="White" Click="Refreshbtn_Click"/>
+        <Button
+            Width="NaN"
+            Margin="624,54,116,413"
+            Background="#3AB19B"
+            Click="Refreshbtn_Click"
+            Content="Refresh"
+            FontSize="10"
+            Foreground="White" />
 
-        <DataGrid x:Name="MyProducts" Margin="50,108,68,77" ItemsSource="{Binding MyItems}"
-          SelectionMode="Single"
-          AutoGenerateColumns="True"
-          AutoGeneratingColumn="MyProducts_AutoGeneratingColumn"
-          AutoGeneratedColumns="MyProducts_AutoGeneratedColumns"
-          CanUserAddRows="false"
-         />
+        <DataGrid
+            x:Name="MyProducts"
+            Margin="50,108,68,77"
+            AutoGenerateColumns="True"
+            AutoGeneratedColumns="MyProducts_AutoGeneratedColumns"
+            AutoGeneratingColumn="MyProducts_AutoGeneratingColumn"
+            CanUserAddRows="false"
+            ItemsSource="{Binding MyItems}"
+            SelectionMode="Single" />
 
 
 
