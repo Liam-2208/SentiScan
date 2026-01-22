@@ -7,7 +7,7 @@ This is the plan for SentiScan - **Work in Progress**
 SentiScan is a lightweight scanning and labeling application built to streamline item tracking and inventory workflows. Users can securely log in, register items, and generate printable barcode labels. These labels can then be scanned to quickly access or verify item details.
 
 ---
-
+## Estimated Finsih Date - Early april / Late March
 ## 🚀 Features
 
 ### 🔐 User Authentication
