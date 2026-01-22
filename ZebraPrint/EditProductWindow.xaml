@@ -42,7 +42,10 @@
                     Width="120"
                     VerticalAlignment="Center"
                     Text="Name:" />
-                <TextBox x:Name="NameBox" Width="300" />
+                <TextBox
+                    x:Name="NameBox"
+                    Width="300"
+                    IsReadOnly="True" />
             </StackPanel>
 
             <!--  Description  -->
@@ -56,6 +59,7 @@
                     Width="300"
                     Height="80"
                     AcceptsReturn="True"
+                    IsReadOnly="True"
                     TextWrapping="Wrap" />
             </StackPanel>
 
@@ -65,7 +69,10 @@
                     Width="120"
                     VerticalAlignment="Center"
                     Text="Image Path:" />
-                <TextBox x:Name="ImageBox" Width="300" />
+                <TextBox
+                    x:Name="ImageBox"
+                    Width="300"
+                    IsReadOnly="True" />
                 <Button
                     Width="111"
                     Height="50"

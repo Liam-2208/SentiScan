@@ -1,9 +1,7 @@
-﻿
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace SentiScan
 {
-
     public class PartSelectionModel : INotifyPropertyChanged
     {
         private bool _isSelected;
@@ -27,5 +25,4 @@ namespace SentiScan
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
     }
-
 }

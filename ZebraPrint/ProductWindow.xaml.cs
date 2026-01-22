@@ -37,15 +37,15 @@ namespace SentiScan
             GetProductsFromDatabase();
         }
 
-        private void MyProducts_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e) 
+        private void MyProducts_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            
+
             if (_autoGenIndex == 4) // Assuming the fifth column is Images
             {
                 e.Cancel = true; // Cancel the generation of the Images column
-            }   
+            }
 
-          
+
             _autoGenIndex++;
         }
 
@@ -54,6 +54,24 @@ namespace SentiScan
             // Reset the index for future auto-generation events
             _autoGenIndex = 0;
         }
+
+
+        private void ApplyTheme(string theme) // "Light" or "Dark"
+        {
+            var toRemove = Application.Current.Resources.MergedDictionaries
+                .Where(d => d.Source != null &&
+                            (d.Source.OriginalString.Contains("Themes/Colors.Light.xaml") ||
+                             d.Source.OriginalString.Contains("Themes/Colors.Dark.xaml")))
+                .ToList();
+            foreach (var dict in toRemove)
+                Application.Current.Resources.MergedDictionaries.Remove(dict);
+
+            var uri = new Uri($"Themes/Colors.{theme}.xaml", UriKind.Relative);
+            Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary { Source = uri });
+        }
+
+        private void ThemeToggleButton_Checked(object sender, RoutedEventArgs e) => ApplyTheme("Dark");
+        private void ThemeToggleButton_Unchecked(object sender, RoutedEventArgs e) => ApplyTheme("Light");
 
 
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
@@ -177,11 +195,11 @@ namespace SentiScan
 
             if (!string.IsNullOrEmpty(txtSearch.Text) && txtSearch.Text.Length > 0)
             {
-                textSearch.Visibility = Visibility.Collapsed;
+                txtSearch.Visibility = Visibility.Collapsed;
             }
             else
             {
-                textSearch.Visibility = Visibility.Visible;
+                txtSearch.Visibility = Visibility.Visible;
             }
         }
 
@@ -219,6 +237,19 @@ namespace SentiScan
             }
 
         }
+        // function to be able to use the view buttton
+        private void ViewButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MyProducts.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a product to view.");
+                return;
+            }
+            DataRowView row = MyProducts.SelectedItem as DataRowView;
+            int id = Convert.ToInt32(row["ID"]);
+            ViewProductWindow viewWindow = new ViewProductWindow(id);
+            viewWindow.ShowDialog();
 
+        }
     }
 }

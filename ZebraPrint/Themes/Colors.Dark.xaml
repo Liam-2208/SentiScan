@@ -1,0 +1,30 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  Core Palette  -->
+    <Color x:Key="Accent">#56C7AF</Color>
+    <Color x:Key="AccentLight">#7ADAC4</Color>
+    <Color x:Key="AccentSoft">#163B34</Color>
+
+    <Color x:Key="Surface">#1E1F22</Color>
+    <Color x:Key="Background">#141518</Color>
+    <Color x:Key="CardStroke">#22FFFFFF</Color>
+
+    <Color x:Key="TextPrimary">#F3F6F9</Color>
+    <Color x:Key="TextSecondary">#B6C2CF</Color>
+    <Color x:Key="Divider">#22FFFFFF</Color>
+    <Color x:Key="Danger">#FF6B57</Color>
+
+    <!--  Brushes  -->
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource Accent}" />
+    <SolidColorBrush x:Key="AccentBrushLight" Color="{StaticResource AccentLight}" />
+    <SolidColorBrush x:Key="AccentBrushSoft" Color="{StaticResource AccentSoft}" />
+
+    <SolidColorBrush x:Key="SurfaceBrush" Color="{StaticResource Surface}" />
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource Background}" />
+    <SolidColorBrush x:Key="CardStrokeBrush" Color="{StaticResource CardStroke}" />
+
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimary}" />
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondary}" />
+    <SolidColorBrush x:Key="DividerBrush" Color="{StaticResource Divider}" />
+    <SolidColorBrush x:Key="DangerBrush" Color="{StaticResource Danger}" />
+</ResourceDictionary>

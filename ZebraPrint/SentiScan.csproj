@@ -30,4 +30,13 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="Themes\Colors.Dark.xaml">
+      <Generator></Generator>
+    </Page>
+    <Page Update="Themes\Colors.Light.xaml">
+      <Generator></Generator>
+    </Page>
+  </ItemGroup>
+
 </Project>

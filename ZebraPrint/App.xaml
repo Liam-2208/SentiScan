@@ -5,8 +5,13 @@
     xmlns:local="clr-namespace:SentiScan"
     StartupUri="LoginWindow.xaml">
     <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes/Colors.Light.xaml"/>
+                <ResourceDictionary Source="/Themes/Colors.Dark.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
 
-        <Style x:Key="titletext" TargetType="TextBlock">
+            <Style x:Key="titletext" TargetType="TextBlock">
             <Setter Property="FontSize" Value="36" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="TextAlignment" Value="Center" />
@@ -168,6 +173,6 @@
 
 
 
-
+            </ResourceDictionary>
     </Application.Resources>
 </Application>
