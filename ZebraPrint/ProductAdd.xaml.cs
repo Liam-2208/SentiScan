@@ -22,24 +22,49 @@ namespace SentiScan
     /// <summary>
     /// Interaction logic for ProductAdd.xaml
     /// </summary>
+    
     public partial class ProductAdd : Window
     {
         string sourcePath;
         DataTable dtPartTypes = new DataTable();
+        
         public ProductAdd()
         {
             InitializeComponent();
             GetProductsFromDatabase();
         }
-
+       
+    public List<int> SelectedPartIDs { get; set; } = new List<int>();
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        // Check Boxes functions
+        private void PartCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBox chk = sender as CheckBox;
+            DataRowView row = chk.DataContext as DataRowView;
+            if (row == null) return;
 
+            int id = Convert.ToInt32(row["ID"]);
 
+            if (!SelectedPartIDs.Contains(id))
+                SelectedPartIDs.Add(id);
+        }
+
+        private void PartCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CheckBox chk = sender as CheckBox;
+            DataRowView row = chk.DataContext as DataRowView;
+            if (row == null) return;
+
+            int id = Convert.ToInt32(row["ID"]);
+
+            if (SelectedPartIDs.Contains(id))
+                SelectedPartIDs.Remove(id);
+        }
         //Product Add Function
         private void AddProducts()
         {
@@ -97,7 +122,10 @@ namespace SentiScan
                         command.Parameters.AddWithValue("@Name", ProductNametxt.Text);
                         command.Parameters.AddWithValue("@Description", Descriptiontxt.Text);
                         command.Parameters.AddWithValue("@Image", destinationPath);
-                        command.Parameters.AddWithValue("@PartID", "1");
+
+                        string partList = string.Join(",", SelectedPartIDs);
+                        command.Parameters.AddWithValue("@PartID", partList);
+
 
                         int result = command.ExecuteNonQuery();
 
@@ -110,7 +138,7 @@ namespace SentiScan
                             Console.WriteLine("Error inserting data into Database!");
                         if (result > 0)
                         {
-                          
+
                             MessageBox.Show("Product Added Successfully!");
                             ProductWindow productWindow = new ProductWindow();
                             productWindow.Show();
@@ -118,14 +146,16 @@ namespace SentiScan
                         }
                     }
                 }
+
                 catch (SqlException ex)
                 {
-                    MessageBox.Show("UserCheck: SQL Exception occurred while trying retrieve tbl_product_types." + ex.SqlState);
+                    MessageBox.Show("SQL ERROR: " + ex.Message + "\n\n" + ex.ToString());
+
                 }
             }
 
 
-        }
+            }
 
 
         // Goes back to previous window
@@ -178,6 +208,16 @@ namespace SentiScan
 
             }
         }
+
+
+
+
+        
+
+
+
+
+
         private void UploadButton_Click(object sender, RoutedEventArgs e)
         {
             // being able to upload an image for the product

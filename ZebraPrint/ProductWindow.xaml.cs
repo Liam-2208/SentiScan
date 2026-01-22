@@ -25,7 +25,7 @@ namespace SentiScan
     /// </summary>
     public partial class ProductWindow : Window
     {
-        DataTable dtProductTypes = new DataTable();
+        private DataTable dtProducts = new DataTable();
         private int _autoGenIndex = 0;
 
 
@@ -39,21 +39,11 @@ namespace SentiScan
 
         private void MyProducts_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e) 
         {
-            // Cancel auto-generation for specific columns
-            if (_autoGenIndex == 0) // Assuming the first column is ID
-            {
-                e.Cancel = true; // Cancel the generation of the ID column
-            }
             
             if (_autoGenIndex == 4) // Assuming the fifth column is Images
             {
                 e.Cancel = true; // Cancel the generation of the Images column
             }   
-
-            if (_autoGenIndex == 5) // Assuming the fourth column is PartId
-            {
-                e.Cancel = true; // Cancel the generation of the PartId column
-            }
 
           
             _autoGenIndex++;
@@ -70,7 +60,7 @@ namespace SentiScan
         {
             ProductAdd productAdd = new ProductAdd();
             productAdd.Show();
-            this.Close();
+            this.Hide();
 
 
         }
@@ -80,51 +70,49 @@ namespace SentiScan
             Application.Current.Shutdown();
         }
 
+
+
         public void GetProductsFromDatabase()
         {
-            using (SqlConnection dbConnection = new SqlConnection(string.Format("Server={0}; database={1}; User Id={2}; Password={3};", Properties.Settings.Default.ServerName, Properties.Settings.Default.DatabaseName, Properties.Settings.Default.DatabaseUser, Properties.Settings.Default.DatabasePass)))
+            dtProducts = new DataTable(); // reset it cleanly
+
+            using (SqlConnection dbConnection = new SqlConnection(
+                $"Server={Properties.Settings.Default.ServerName}; " +
+                $"Database={Properties.Settings.Default.DatabaseName}; " +
+                $"User Id={Properties.Settings.Default.DatabaseUser}; " +
+                $"Password={Properties.Settings.Default.DatabasePass};"))
             {
                 try
                 {
                     dbConnection.Open();
+
                     string query = "SELECT * FROM tbl_product_types";
                     using (SqlCommand command = new SqlCommand(query, dbConnection))
                     {
-
-
-                        // create data adapter
                         SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-                        // this will query your database and return the result to your datatable
-                        dataAdapter.Fill(dtProductTypes);
-                        dbConnection.Close();
-                        dataAdapter.Dispose();
+                        dataAdapter.Fill(dtProducts);
                     }
                 }
                 catch (SqlException ex)
                 {
-                    MessageBox.Show("UserCheck: SQL Exception occurred while trying retrieve tbl_product_types." + ex.SqlState);
+                    MessageBox.Show("Error loading products: " + ex.Message);
                 }
             }
 
-            // Check if any rows exist
-            if (dtProductTypes.Rows.Count > 0)
-            {
-                // Bind the DataTable to the DataGrid
-                MyProducts.ItemsSource = dtProductTypes.DefaultView;
+            // Bind the new table
+            MyProducts.ItemsSource = dtProducts.DefaultView;
 
-                // Fill DataGrid Columns to Width of datagrid
-                MyProducts.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
-
-
-            }
+            // Fit columns
+            MyProducts.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
+
 
         // Back button to go to previous window
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             HomeWindow mainWindow = new HomeWindow();
             mainWindow.Show();
-            this.Close();
+            this.Hide();
         }
 
 
@@ -149,7 +137,7 @@ namespace SentiScan
                                 MessageBox.Show("Product Deleted Successfully!");
                                 // Refresh the product list
                                 MyProducts.ItemsSource = null;
-                                dtProductTypes.Clear();
+                                dtProducts.Clear();
                                 GetProductsFromDatabase();
                             }
                         }
@@ -172,12 +160,12 @@ namespace SentiScan
             if (string.IsNullOrEmpty(searchText))
             {
                 // If search text is empty, show all products
-                MyProducts.ItemsSource = dtProductTypes.DefaultView;
+                MyProducts.ItemsSource = dtProducts.DefaultView;
             }
             else
             {
                 // Filter the DataTable based on the search text
-                DataView dv = dtProductTypes.DefaultView;
+                DataView dv = dtProducts.DefaultView;
                 dv.RowFilter = $"Name LIKE '%{searchText}%' OR Description LIKE '%{searchText}%'";
                 MyProducts.ItemsSource = dv;
             }
@@ -204,9 +192,32 @@ namespace SentiScan
 
         private void Refreshbtn_Click(object sender, RoutedEventArgs e)
         {
-            DataView dv = dtProductTypes.DefaultView;
+            DataView dv = dtProducts.DefaultView;
             dv.RowFilter = string.Empty;
             MyProducts.ItemsSource = dv;
+        }
+
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MyProducts.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a product to edit.");
+                return;
+            }
+
+            DataRowView row = MyProducts.SelectedItem as DataRowView;
+            int id = Convert.ToInt32(row["ID"]);
+
+            EditProductWindow editWindow = new EditProductWindow(id);
+
+
+            bool? result = editWindow.ShowDialog();
+            if (result == true)
+            {
+                GetProductsFromDatabase();
+            }
+
         }
 
     }

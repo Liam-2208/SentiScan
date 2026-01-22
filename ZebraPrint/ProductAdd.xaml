@@ -101,15 +101,39 @@
             Style="{StaticResource textBox}"
             TextWrapping="Wrap" />
 
+
+
         <DataGrid
             x:Name="MyParts"
             Grid.Row="1"
             Margin="181,301,165,125"
-            AutoGenerateColumns="True"
-            CanUserAddRows="false"
-            ItemsSource="{Binding MyItems}"
+            AutoGenerateColumns="False"
+            CanUserAddRows="False"
             SelectionMode="Single">
+
+            <DataGrid.Columns>
+
+                <!-- Checkbox column -->
+                <DataGridTemplateColumn Header="Select">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox
+                        Checked="PartCheckBox_Checked"
+                        Unchecked="PartCheckBox_Unchecked"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- Actual DB columns -->
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Prefix" Binding="{Binding Prefix}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
+
+            </DataGrid.Columns>
         </DataGrid>
+
+
 
         <Button
             x:Name="UploadButton"
