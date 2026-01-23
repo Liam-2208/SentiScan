@@ -11,6 +11,8 @@
                 <ResourceDictionary Source="/Themes/Colors.Dark.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
             <Style x:Key="titletext" TargetType="TextBlock">
             <Setter Property="FontSize" Value="36" />
             <Setter Property="FontWeight" Value="Bold" />
